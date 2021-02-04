@@ -17,6 +17,19 @@ to create and render graphs with Graphviz in **your** Vaadin 14+ Project with th
 
 Install the component using [Vaadin Directory](https://vaadin.com/directory/component/viz):
 
+```xml
+<dependency>
+   <groupId>de.f0rce.viz</groupId>
+   <artifactId>viz</artifactId>
+   <version>1.0.0</version>
+</dependency>
+
+<repository>
+   <id>vaadin-addons</id>
+   <url>https://maven.vaadin.com/vaadin-addons</url>
+</repository>
+```
+
 *Latest Version: v1.0.0*
 
 
