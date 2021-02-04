@@ -7,7 +7,7 @@
 [Viz.js](https://github.com/mdaines/viz.js/) is a hack to put Graphviz on the web. Now you are able
 to create and render graphs with Graphviz in **your** Vaadin 14+ Project with this custom add-on.
 
-![Example](https://cloud.backslashlabs.dev/index.php/s/7eyPW94MkFP9aWf)
+![Example](https://cloud.backslashlabs.dev/index.php/s/7eyPW94MkFP9aWf/preview)
 
 **Created** by David "F0rce" Dodlek
 
