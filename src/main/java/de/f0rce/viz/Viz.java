@@ -19,7 +19,7 @@ import com.vaadin.flow.component.html.Div;
 @NpmPackage(value = "viz.js", version = "2.1.2")
 @NpmPackage(value = "svg-pan-zoom", version = "3.6.1")
 @JsModule("./@f0rce/viz-widget/viz-widget.js")
-@Tag("viz-widget")
+@Tag("lit-viz")
 public class Viz extends Div implements HasSize {
 
 	private String graph;

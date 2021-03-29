@@ -28,7 +28,7 @@ public class View extends VerticalLayout {
 		Viz viz = new Viz();
 		viz.setHeight("400px");
 		viz.setWidth("900px");
-		viz.setMinHeight("900px");
+		viz.setMinHeight("500px");
 		viz.showControlIcons(true);
 		viz.setMouseWheelZoomEnabled(false);
 
