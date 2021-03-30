@@ -41,7 +41,7 @@
       "svg-pan-zoom": "3.6.1",
       "@vaadin/vaadin-tabs": "3.2.0",
       "@vaadin/vaadin-radio-button": "1.5.1",
-      "@vaadin/vaadin-lumo-styles": "1.6.0",
+      "@vaadin/vaadin-lumo-styles": "1.6.1",
       "@vaadin/vaadin-material-styles": "1.3.2"
     },
     "devDependencies": {
@@ -98,7 +98,7 @@
     "svg-pan-zoom": "3.6.1",
     "@vaadin/vaadin-tabs": "3.2.0",
     "@vaadin/vaadin-radio-button": "1.5.1",
-    "@vaadin/vaadin-lumo-styles": "1.6.0",
+    "@vaadin/vaadin-lumo-styles": "1.6.1",
     "@vaadin/vaadin-material-styles": "1.3.2"
   },
   "devDependencies": {
