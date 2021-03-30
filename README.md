@@ -19,7 +19,7 @@ Install the component using [Vaadin Directory](https://vaadin.com/directory/comp
 <dependency>
    <groupId>de.f0rce.viz</groupId>
    <artifactId>viz</artifactId>
-   <version>1.0.0</version>
+   <version>2.0.0</version>
 </dependency>
 
 <repository>
@@ -28,7 +28,7 @@ Install the component using [Vaadin Directory](https://vaadin.com/directory/comp
 </repository>
 ```
 
-*Latest Version: v1.0.0*
+*Latest Version: v2.0.0*
 
 
 ## Documentation
@@ -38,7 +38,7 @@ Install the component using [Vaadin Directory](https://vaadin.com/directory/comp
 
 ## License
 
-[MIT License](http://opensource.org/licenses/MIT)
+[MIT License](https://github.com/F0rce/viz/blob/main/LICENSE)
 
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FF0rce%2Fviz-widget.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FF0rce%2Fviz-widget?ref=badge_large)
