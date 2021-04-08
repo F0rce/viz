@@ -54,7 +54,7 @@
       "ts-loader": "8.0.12",
       "chokidar": "^3.5.0",
       "webpack-merge": "4.2.2",
-      "typescript": "4.0.3",
+      "typescript": "4.2.4",
       "webpack-dev-server": "3.11.0"
     },
     "hash": "9e122ff9656c50a4e97489c58e1041b06210e49a9c60548ad978686969780a23"
@@ -111,7 +111,7 @@
     "ts-loader": "8.0.12",
     "chokidar": "^3.5.0",
     "webpack-merge": "4.2.2",
-    "typescript": "4.0.3",
+    "typescript": "4.2.4",
     "webpack-dev-server": "3.11.0"
   }
 }
