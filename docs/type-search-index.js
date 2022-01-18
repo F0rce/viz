@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"de.f0rce.viz","l":"Viz"},{"p":"de.f0rce.viz","l":"VizEngine"},{"p":"de.f0rce.viz","l":"VizFormat"}]
