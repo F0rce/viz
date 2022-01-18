@@ -7,11 +7,15 @@ import java.io.IOException;
 
 import org.apache.commons.io.FilenameUtils;
 
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.shared.Registration;
+
+import de.f0rce.viz.events.VizImageEncodeEvent;
 
 /**
  * @author David "F0rce" Dodlek
@@ -30,23 +34,23 @@ public class Viz extends Div implements HasSize {
 	private boolean mouseWheelZoomEnabled = true;
 
 	public Viz() {
-		setWidth("300px");
-		setHeight("600px");
+		this.setWidth("300px");
+		this.setHeight("600px");
 	}
 
 	/**
 	 * Sets the graph for the widget to render.
-	 * 
+	 *
 	 * @param graph String
 	 */
 	public void setGraph(String graph) {
-		getElement().setAttribute("graph", graph);
+		this.getElement().setAttribute("graph", graph);
 		this.graph = graph;
 	}
 
 	/**
 	 * Sets the graph for the widget to render (read from .dot file).
-	 * 
+	 *
 	 * @param file File
 	 */
 	public void setGraph(File file) {
@@ -61,7 +65,7 @@ public class Viz extends Div implements HasSize {
 					sb.append(" ");
 				}
 				fr.close();
-				getElement().setAttribute("graph", sb.toString());
+				this.getElement().setAttribute("graph", sb.toString());
 				this.graph = sb.toString();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -71,7 +75,7 @@ public class Viz extends Div implements HasSize {
 
 	/**
 	 * Returns the current set graph.
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getGraph() {
@@ -81,17 +85,17 @@ public class Viz extends Div implements HasSize {
 	/**
 	 * In SVG mode {@link #setFormat(VizFormat)} sets if the control icons in the
 	 * bottom right corner should be displayed or not.
-	 * 
+	 *
 	 * @param showControlIcons boolean
 	 */
 	public void showControlIcons(boolean showControlIcons) {
-		getElement().setProperty("controlIconsEnabled", showControlIcons);
+		this.getElement().setProperty("controlIconsEnabled", showControlIcons);
 		this.showControlIcons = showControlIcons;
 	}
 
 	/**
 	 * Returns if the control icons are enabled/disabled.
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public boolean isShowControlIcons() {
@@ -100,17 +104,17 @@ public class Viz extends Div implements HasSize {
 
 	/**
 	 * Sets the engine for the renderer.
-	 * 
+	 *
 	 * @param engine VizEngine
 	 */
 	public void setEngine(VizEngine engine) {
-		getElement().setProperty("engine", engine.toString());
+		this.getElement().setProperty("engine", engine.toString());
 		this.engine = engine;
 	}
 
 	/**
 	 * Returns the current set engine.
-	 * 
+	 *
 	 * @return VizEngine
 	 */
 	public VizEngine getEngine() {
@@ -119,17 +123,17 @@ public class Viz extends Div implements HasSize {
 
 	/**
 	 * Sets the format for the renderer.
-	 * 
+	 *
 	 * @param format VizFormat
 	 */
 	public void setFormat(VizFormat format) {
-		getElement().setProperty("format", format.toString());
+		this.getElement().setProperty("format", format.toString());
 		this.format = format;
 	}
 
 	/**
 	 * Returns the current set format.
-	 * 
+	 *
 	 * @return VizFormat
 	 */
 	public VizFormat getFormat() {
@@ -139,20 +143,20 @@ public class Viz extends Div implements HasSize {
 	/**
 	 * In IMG mode {@link #setFormat(VizFormat)} sets the MIME-Type for the
 	 * renderer. MIME-Type has to start with "image/".
-	 * 
+	 *
 	 * @param mimeType String
 	 */
 	public void setMimeType(String mimeType) {
 		if (!mimeType.contains("image/")) {
 			mimeType = "image/png";
 		}
-		getElement().setProperty("mimeType", mimeType);
+		this.getElement().setProperty("mimeType", mimeType);
 		this.mimeType = mimeType;
 	}
 
 	/**
 	 * Returns the current set MIME-Type.
-	 * 
+	 *
 	 * @return String
 	 */
 	public String getMimeType() {
@@ -162,20 +166,31 @@ public class Viz extends Div implements HasSize {
 	/**
 	 * In SVG mode {@link #setFormat(VizFormat)} sets if mousewheel-scrooling should
 	 * be enabled/disabled.
-	 * 
+	 *
 	 * @param mouseWheelZoomEnabled boolean
 	 */
 	public void setMouseWheelZoomEnabled(boolean mouseWheelZoomEnabled) {
-		getElement().setProperty("mouseWheelZoomEnabled", mouseWheelZoomEnabled);
+		this.getElement().setProperty("mouseWheelZoomEnabled", mouseWheelZoomEnabled);
 		this.mouseWheelZoomEnabled = mouseWheelZoomEnabled;
 	}
 
 	/**
 	 * Returns if mousewheel-scrolling is enabled/disabled.
-	 * 
+	 *
 	 * @return boolean
 	 */
 	public boolean isMouseWheelZoomEnabled() {
 		return this.mouseWheelZoomEnabled;
 	}
+
+	/**
+	 * Add this listener if you need t
+	 *
+	 * @param listener {@link ComponentEventListener}
+	 * @return {@link Registration}
+	 */
+	public Registration addImageEncodeListener(ComponentEventListener<VizImageEncodeEvent> listener) {
+		return this.addListener(VizImageEncodeEvent.class, listener);
+	}
+
 }

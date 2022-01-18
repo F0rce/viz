@@ -5,7 +5,6 @@
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 import { LitElement, html, css } from "lit-element";
 
 import Viz from "viz.js";
@@ -109,8 +108,6 @@ class LitViz extends LitElement {
   firstUpdated(changedProperties) {
     this.parser = new DOMParser();
     this.running = false;
-    this._graph;
-    this.result;
 
     this.outputDiv = this.shadowRoot.getElementById("output");
     this.errorDiv = this.shadowRoot.getElementById("error");
@@ -122,10 +119,8 @@ class LitViz extends LitElement {
   updated(changedProperties) {
     var allowedCaller = ["graph", "engine", "format", "mimeType"];
     changedProperties.forEach((oldValue, propName) => {
-      console.log(propName);
       if (allowedCaller.includes(propName)) {
         this.updateGraph();
-        console.log("allowed call " + propName);
       }
     });
   }
@@ -228,10 +223,16 @@ class LitViz extends LitElement {
     }
 
     if (this.format == "svg") {
-      var svg = this.parser.parseFromString(this.result, "image/svg+xml")
-        .documentElement;
+      var svg = this.parser.parseFromString(
+        this.result,
+        "image/svg+xml"
+      ).documentElement;
       svg.id = "svg_output";
       this.outputDiv.appendChild(svg);
+
+      var serialized = new XMLSerializer().serializeToString(svg);
+      var base64 = window.btoa(serialized);
+      var imageUri = `data:image/svg+xml;base64,${base64}`;
 
       svgPanZoom(svg, {
         zoomEnabled: true,
@@ -241,8 +242,27 @@ class LitViz extends LitElement {
         minZoom: 0.1,
         mouseWheelZoomEnabled: this.mouseWheelZoomEnabled,
       });
+
+      this.dispatchEvent(
+        new CustomEvent("viz-image-encode", {
+          detail: {
+            imageUri: imageUri,
+          },
+        })
+      );
     } else if (this.format == "img") {
       this.outputDiv.appendChild(this.result);
+
+      let self = this;
+      toDataURL(this.result.src, function (dataUrl) {
+        self.dispatchEvent(
+          new CustomEvent("viz-image-encode", {
+            detail: {
+              imageUri: dataUrl,
+            },
+          })
+        );
+      });
     } else {
       var text = document.createElement("div");
       text.id = "text";
@@ -258,3 +278,18 @@ class LitViz extends LitElement {
 }
 
 customElements.define("lit-viz", LitViz);
+
+// Utility
+function toDataURL(url, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    var reader = new FileReader();
+    reader.onloadend = function () {
+      callback(reader.result);
+    };
+    reader.readAsDataURL(xhr.response);
+  };
+  xhr.open("GET", url);
+  xhr.responseType = "blob";
+  xhr.send();
+}

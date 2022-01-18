@@ -26,6 +26,11 @@ public class View extends VerticalLayout {
 		});
 
 		Viz viz = new Viz();
+
+		viz.addImageEncodeListener(evt -> {
+			System.out.println(evt.getImageUri());
+		});
+
 		viz.setHeight("400px");
 		viz.setWidth("900px");
 		viz.setMinHeight("500px");
@@ -55,6 +60,7 @@ public class View extends VerticalLayout {
 		});
 
 		TextField tf = new TextField("MIME-Type");
+		tf.setValue(viz.getMimeType());
 		tf.addValueChangeListener(event -> {
 			viz.setMimeType(event.getSource().getValue());
 		});
@@ -67,6 +73,6 @@ public class View extends VerticalLayout {
 
 		mainDialog.add(hL, vL);
 
-		add(openMe);
+		this.add(openMe);
 	}
 }
