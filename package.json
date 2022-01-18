@@ -87,7 +87,7 @@
     "webpack": "4.42.0",
     "webpack-babel-multi-target-plugin": "2.5.0",
     "webpack-cli": "3.3.11",
-    "webpack-dev-server": "3.11.0",
+    "webpack-dev-server": "3.11.3",
     "webpack-merge": "4.2.2"
   },
   "vaadin": {
@@ -177,7 +177,7 @@
       "webpack": "4.42.0",
       "webpack-babel-multi-target-plugin": "2.5.0",
       "webpack-cli": "3.3.11",
-      "webpack-dev-server": "3.11.0",
+      "webpack-dev-server": "3.11.3",
       "webpack-merge": "4.2.2"
     },
     "hash": "8ddf9fc7d6dd09b8c01bd36b7af59c9587aba6152a9171ae9fea27f529f850cc"
