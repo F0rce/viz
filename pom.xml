@@ -6,7 +6,7 @@
 
 	<groupId>de.f0rce.viz</groupId>
 	<artifactId>viz</artifactId>
-	<version>2.1.0</version>
+	<version>2.1.1</version>
 	<name>Viz</name>
 	<description>Lit-Element wrap around Viz.js (https://github.com/mdaines/viz.js) for Vaadin 14+</description>
 
